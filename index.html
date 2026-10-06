@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elektronika Dasar: Kenali Komponenmu!</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f3f7f6;--card:#fff;--ink:#12231f;--mut:#566b66;--pri:#0f766e;--acc:#f59e0b;--ok:#15803d;--bad:#b91c1c;--line:#d5e0dd}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1917;--card:#162826;--ink:#e8f3f0;--mut:#9db5af;--pri:#2dd4bf;--ok:#4ade80;--bad:#f87171;--line:#27403c}}
+:root[data-theme="dark"]{--bg:#0d1917;--card:#162826;--ink:#e8f3f0;--mut:#9db5af;--pri:#2dd4bf;--ok:#4ade80;--bad:#f87171;--line:#27403c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
+.top b{color:var(--pri)}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:10px;padding:10px 20px;font-weight:600;transition:.2s}
+:root[data-theme="dark"] .btn,.btn.dk{color:#06201c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#06201c}}
+.btn:hover{box-shadow:0 0 16px var(--pri);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--pri);border:2px solid var(--pri)}
+.btn.ghost:hover{box-shadow:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+h1,h2{margin:.2em 0}
+.mut{color:var(--mut)}
+.hero{text-align:center;padding:36px 12px;background:linear-gradient(135deg,#0f2f2b,#0f766e);color:#fff;border-radius:18px;animation:fade 1s}
+.hero .btn{background:var(--acc);color:#1c1200;font-size:1.1rem;margin-top:14px}
+.hero .btn:hover{box-shadow:0 0 22px var(--acc)}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.menu{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:20px;text-align:left;color:var(--ink);transition:.2s}
+.menu:hover{transform:scale(1.04);border-color:var(--pri);background:color-mix(in srgb,var(--pri) 12%,var(--card))}
+.menu .ic{font-size:2rem}
+.menu small{display:block;color:var(--mut)}
+svg{max-width:100%;height:auto}
+.hs circle{fill:#f59e0b55;stroke:#f59e0b;stroke-width:3;animation:pulse 1.2s infinite;transform-box:fill-box;transform-origin:center}
+.hs.done circle{fill:#22c55e66;stroke:#16a34a;animation:none}
+.hs{cursor:pointer}
+@keyframes pulse{50%{transform:scale(1.35);opacity:.5}}
+.modal{position:fixed;inset:0;background:#000a;display:flex;align-items:center;justify-content:center;padding:16px;z-index:9}
+.modal[hidden]{display:none}
+.pop{background:var(--card);border-radius:16px;max-width:580px;width:100%;padding:20px;position:relative;max-height:90%;overflow:auto}
+.x{position:absolute;top:8px;right:10px;background:none;border:0;font-size:1.5rem;color:var(--mut)}
+.sym{color:var(--pri);width:150px}
+.pop dt{font-weight:700;margin-top:8px;color:var(--pri)}
+.pop dd{margin:0}
+.prog{height:10px;background:var(--line);border-radius:9px;overflow:hidden;margin:6px 0}
+.prog i{display:block;height:100%;background:var(--pri);width:0;transition:.4s}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{border:2px solid var(--line);border-radius:999px;padding:6px 12px 6px 8px;background:var(--card);color:var(--ink);display:flex;align-items:center;gap:6px;cursor:grab;user-select:none}
+.chip i{width:18px;height:18px;border-radius:50%;border:1px solid #0006;display:inline-block}
+.chip.sel{border-color:var(--acc);box-shadow:0 0 0 3px #f59e0b55}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;padding:12px;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+.opt:hover:not(:disabled){border-color:var(--pri)}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--card))}
+.opt.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,var(--card))}
+.fb{border-left:6px solid var(--mut);padding:10px 14px;border-radius:8px;background:color-mix(in srgb,var(--mut) 10%,var(--card));margin-top:12px}
+.fb.ok{border-color:var(--ok)}.fb.no{border-color:var(--bad)}
+.big{font-size:3rem;font-weight:800;color:var(--pri);line-height:1}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.tb{width:100%;border-collapse:collapse;font-size:.85rem}.tb th,.tb td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}.tb th{background:color-mix(in srgb,var(--pri) 18%,var(--card))}.tw{overflow-x:auto}
+footer{text-align:center;color:var(--mut);font-size:.8rem;margin:20px 0}
+</style></head><body><div class="wrap">
+
+<div class="top" id="top" hidden><span>⚡ <b>Elektronika Dasar</b></span><span class="mut" id="crumb"></span><button class="btn ghost" onclick="go('menu')">☰ Menu</button></div>
+
+<!-- LAYAR 1 -->
+<section id="splash" class="scr">
+<div class="hero"><div style="font-size:3rem">🔌</div>
+<h1>ELEKTRONIKA DASAR:<br>Kenali Komponenmu!</h1>
+<p>Yuk, pelajari komponen dasar elektronika: resistor, kapasitor, induktor, dioda, dan transistor.</p>
+<button class="btn" onclick="go('menu')">▶ Mulai Belajar</button>
+<p style="margin-top:28px;font-size:.85rem;opacity:.85">Mata Kuliah TIK dalam Pendidikan • PTIK-C, FT UNIMED<br>Kelompok: Abdul Sani Harahap (Ketua), Michard Christian Laia, MHD Riski Aditya Syahputra, Sulis Nuralia Lase</p></div>
+<div class="card" style="margin-top:14px"><b>Tujuan belajar:</b> (1) mengenali simbol &amp; bentuk fisik komponen, (2) menjelaskan fungsinya, (3) membaca nilai resistor dari kode warna.</div>
+</section>
+
+<!-- LAYAR 2 -->
+<section id="menu" class="scr" hidden>
+<h2>Menu Utama</h2><p class="mut">Pilih urutan belajarmu sendiri. Disarankan: 1 → 2 → 3.</p>
+<div class="grid">
+<button class="menu" onclick="go('explore')"><span class="ic">🔍</span><h3>1. Kenali Komponen</h3><small>Jelajahi breadboard &amp; klik hotspot</small><small id="p1"></small></button>
+<button class="menu" onclick="startColor()"><span class="ic">🎨</span><h3>2. Baca Kode Warna Resistor</h3><small>Latihan drag &amp; drop</small><small id="p2"></small></button>
+<button class="menu" onclick="startQuiz()"><span class="ic">📝</span><h3>3. Uji Pemahaman</h3><small>5 soal + penjelasan</small><small id="p3"></small></button>
+</div>
+<div class="card" style="margin-top:14px"><b>Progres belajar</b><div class="prog"><i id="pbar"></i></div><span class="mut" id="ptxt"></span></div>
+</section>
+
+<!-- LAYAR 3 -->
+<section id="explore" class="scr" hidden>
+<h2>Eksplorasi Komponen</h2>
+<div class="card"><b>📘 Pengantar</b>
+<p><b>Komponen elektronika</b> adalah bagian-bagian penyusun rangkaian. Rangkaian sederhana terdiri dari <b>sumber tegangan</b> (baterai/adaptor), <b>penghantar</b> (kabel/jalur PCB), dan <b>beban</b> (LED, motor, dll.), dengan komponen lain untuk mengatur arus dan tegangan.</p>
+<p><b>Komponen pasif</b> (resistor, kapasitor, induktor) tidak menguatkan sinyal; hanya menghambat, menyimpan, atau menyaring energi. <b>Komponen aktif</b> (dioda, transistor) terbuat dari semikonduktor dan dapat mengendalikan arah atau besar arus.</p>
+<p><b>Besaran dasar:</b> tegangan V (volt), arus I (ampere), hambatan R (ohm) dan hubungannya <b>V = I × R</b>. Contoh: baterai 9 V dengan resistor 450 Ω menghasilkan arus 9 ÷ 450 = 0,02 A (20 mA).</p>
+<p><b>Breadboard</b> adalah papan percobaan berlubang untuk merangkai komponen tanpa solder. Dua jalur tepi (merah/biru) untuk daya (+/–), sedangkan lubang di tengah terhubung per kolom.</p></div>
+<p><b>Klik pada titik yang berkedip</b> untuk melihat nama, simbol, dan fungsi komponen! <span class="mut" id="ecount"></span></p>
+<div class="card" id="board"></div>
+<div class="card"><b>📊 Perbandingan 5 Komponen</b><div class="tw"><table class="tb"><tr><th>Komponen</th><th>Jenis</th><th>Satuan</th><th>Fungsi singkat</th><th>Berpolaritas?</th></tr>
+<tr><td>Resistor</td><td>Pasif</td><td>Ω</td><td>Menghambat arus</td><td>Tidak</td></tr>
+<tr><td>Kapasitor</td><td>Pasif</td><td>F</td><td>Menyimpan muatan</td><td>Elco: ya</td></tr>
+<tr><td>Induktor</td><td>Pasif</td><td>H</td><td>Menyimpan energi magnet</td><td>Tidak</td></tr>
+<tr><td>Dioda</td><td>Aktif (semikonduktor)</td><td>V maju, A</td><td>Arus satu arah</td><td>Ya</td></tr>
+<tr><td>Transistor</td><td>Aktif (semikonduktor)</td><td>hFE</td><td>Saklar &amp; penguat</td><td>Kaki B-C-E</td></tr></table></div></div>
+<div class="row"><button class="btn ghost" onclick="go('menu')">← Menu</button><button class="btn" onclick="startColor()">Lanjut: Kode Warna →</button></div>
+<div class="modal" id="modal" hidden onclick="if(event.target===this)closePop()"><div class="pop" id="pop"></div></div>
+</section>
+
+<!-- LAYAR 4 -->
+<section id="color" class="scr" hidden>
+<h2>Latihan Kode Warna Resistor</h2>
+<div class="card"><b>Cara membaca:</b> gelang 1 &amp; 2 = angka, gelang 3 = pengali (jumlah nol), gelang 4 = toleransi (emas = ±5%). Contoh: Merah(2) Merah(2) Cokelat(×10) = 220 Ω.</div>
+<div class="card"><p><b id="ctask"></b> <span class="mut" id="cno"></span></p>
+<div style="text-align:center"><svg id="res" viewBox="0 0 400 110" width="420"></svg></div>
+<p class="mut" style="margin:0">Seret warna ke slot (atau ketuk warna, lalu ketuk slot). Ketuk slot terisi untuk mengosongkan.</p>
+<div class="chips" id="chips"></div>
+<div class="row"><button class="btn" onclick="checkColor()">Cek Jawaban</button><button class="btn ghost" onclick="clearColor()">Reset</button></div>
+<div id="cfb"></div></div>
+</section>
+
+<!-- Kuis -->
+<section id="quiz" class="scr" hidden>
+<h2>Uji Pemahaman</h2>
+<div class="card"><span class="mut" id="qno"></span><div class="prog"><i id="qbar"></i></div><div id="qbody"></div><div id="qfb"></div></div>
+</section>
+
+<!-- LAYAR 5 -->
+<section id="result" class="scr" hidden>
+<h2>Hasil &amp; Rangkuman</h2>
+<div class="card" style="text-align:center"><div class="big" id="rscore"></div><p id="rmsg"></p><p class="mut" id="rcolor"></p></div>
+<div class="card"><b>Rangkuman</b><ul>
+<li><b>Resistor</b> – menghambat arus; simbol zigzag; nilai dibaca dari kode warna.</li>
+<li><b>Kapasitor</b> – menyimpan muatan sementara; simbol dua garis sejajar.</li>
+<li><b>Induktor</b> – menyimpan energi medan magnet; simbol lilitan.</li>
+<li><b>Dioda</b> – mengalirkan arus satu arah; simbol segitiga + garis.</li>
+<li><b>Transistor</b> – saklar elektronik &amp; penguat sinyal.</li></ul></div>
+<div class="card"><b>Rekomendasi</b><p id="rrec"></p></div>
+<div class="row"><button class="btn" onclick="startQuiz()">Ulangi Kuis</button><button class="btn ghost" onclick="startColor()">Ulangi Latihan</button><button class="btn ghost" onclick="go('menu')">Menu Utama</button></div>
+</section>
+
+<footer>Sumber: ilustrasi SVG dibuat sendiri oleh kelompok; materi mengacu pada buku teks elektronika dasar (Floyd, <i>Electronic Devices</i>) &amp; standar kode warna IEC 60062. Dibuat dengan bantuan AI; isi menjadi tanggung jawab kelompok.</footer>
+</div>
+
+<script>
+const $=s=>document.querySelector(s),st={vis:new Set(),cdone:0,qscore:null};
+const S=(d,x='')=>`<svg viewBox="0 0 90 50" class="sym" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/>${x}</svg>`;
+const C=[
+{n:'Resistor',s:S('M4 25H18L23 10L33 40L43 10L53 40L63 10L68 25H86'),d:'Komponen pasif dua kaki yang memberi hambatan (resistansi) terhadap aliran arus listrik.',f:'Membatasi arus, membagi tegangan, dan melindungi komponen lain.',u:'Ohm (Ω); kelipatan kΩ dan MΩ',j:'Tetap (karbon/metal film), variabel (potensiometer), LDR, termistor',p:'Tabung kecil krem/biru dengan gelang warna; dua kaki tanpa polaritas.',k:'Elektron melewati bahan penghambat sehingga sebagian energi berubah menjadi panas. Makin besar nilai R, makin kecil arus yang mengalir.',c:'Pembatas arus LED, pembagi tegangan, pull-up/pull-down pada mikrokontroler.',r:'V = I × R (Hukum Ohm)',t:'Nilai dibaca dari kode warna (lihat menu 2). Daya berlebih membuat resistor panas, pilih watt yang sesuai (¼ W, ½ W, 1 W).'},
+{n:'Kapasitor',s:S('M4 25H38M38 8V42M52 8V42M52 25H86'),d:'Komponen pasif yang terdiri dari dua pelat konduktor yang dipisahkan bahan isolator (dielektrik).',f:'Menyimpan muatan listrik sementara, menyaring (filter), dan menghaluskan tegangan.',u:'Farad (F); biasanya µF, nF, pF',j:'Elektrolit (berpolaritas), keramik, film/mylar, variabel',p:'Silinder berkaki dua dengan tanda polaritas (elco) atau cakram kecil (keramik).',k:'Saat diberi tegangan, muatan terkumpul pada kedua pelat; saat sumber dilepas, muatan dilepas kembali. Kapasitor menahan arus DC yang stabil dan melewatkan sinyal AC.',c:'Filter catu daya, penghalus hasil penyearah, pewaktu (rangkaian RC), kopling sinyal audio.',r:'Q = C × V',t:'Kapasitor elco punya kutub + dan –; jika terbalik atau tegangan melebihi batas, bisa panas bahkan meledak.'},
+{n:'Induktor',s:S('M14 32H4M14 32a8 8 0 0 1 16 0a8 8 0 0 1 16 0a8 8 0 0 1 16 0a8 8 0 0 1 16 0H86'),d:'Komponen pasif berupa kawat tembaga yang dililit (kumparan), sering berinti ferit atau besi.',f:'Menyimpan energi dalam medan magnet dan menahan perubahan arus mendadak.',u:'Henry (H); biasanya mH dan µH',j:'Inti udara, inti ferit, inti besi, toroid',p:'Lilitan kawat pada inti berbentuk silinder atau cincin (toroid); mirip resistor besar atau koil.',k:'Arus yang mengalir menimbulkan medan magnet. Ketika arus berubah, timbul tegangan yang melawan perubahan itu. Induktor melewatkan DC dan menahan AC berfrekuensi tinggi.',c:'Filter, transformator, relay dan solenoid, konverter DC-DC.',r:'Reaktansi XL = 2π × f × L',t:'Induktor berkebalikan dengan kapasitor: kapasitor menahan DC, induktor menahan AC frekuensi tinggi.'},
+{n:'Dioda',s:S('M4 25H34M34 8V42L58 25ZM58 8V42M58 25H86'),d:'Komponen semikonduktor dua kaki (anoda dan katoda) dari sambungan P–N.',f:'Mengalirkan arus hanya satu arah, dari anoda ke katoda.',u:'Tegangan maju ±0,7 V (silikon) dan arus maksimum (A)',j:'Penyearah (1N4007), Zener, LED, Schottky',p:'Tabung kecil hitam/bening dengan gelang perak di sisi katoda.',k:'Bias maju (anoda lebih positif dari katoda) membuat arus mengalir; bias mundur menahan arus. Karena itu dioda berfungsi seperti katup satu arah.',c:'Penyearah AC ke DC, proteksi polaritas terbalik, lampu indikator (LED).',r:'V maju silikon ≈ 0,7 V',t:'Hafal arah: arus mengalir searah segitiga; garis pada simbol adalah katoda.'},
+{n:'Transistor',s:S('M4 25H34M34 12V38M34 21L56 10V3M34 29L56 40V47','<circle cx="48" cy="25" r="20"/>'),d:'Komponen semikonduktor tiga kaki: basis (B), kolektor (C), dan emitor (E).',f:'Bekerja sebagai saklar elektronik dan penguat sinyal.',u:'Penguatan arus hFE (β)',j:'BJT (NPN dan PNP), MOSFET',p:'Bodi hitam setengah silinder (TO-92) dengan tiga kaki.',k:'Arus kecil pada basis mengendalikan arus besar antara kolektor dan emitor. Tanpa arus basis, transistor mati (OFF); dengan arus basis cukup, transistor hidup (ON).',c:'Saklar elektronik, penguat audio, penggerak relay atau motor, gerbang logika.',r:'IC = β × IB',t:'Selalu cek datasheet untuk urutan kaki B-C-E karena berbeda tiap tipe.'}];
+const COL=[['Hitam','#111',0],['Cokelat','#7a4a21',1],['Merah','#dc2626',2],['Oranye','#f97316',3],['Kuning','#facc15',4],['Hijau','#16a34a',5],['Biru','#2563eb',6],['Ungu','#7e22ce',7],['Abu-abu','#9ca3af',8],['Putih','#f8fafc',9],['Emas','#d4a017','±5%']];
+const cc=n=>COL.find(c=>c[0]==n);
+const T=[{v:'220 Ω',b:['Merah','Merah','Cokelat','Emas']},{v:'1 kΩ (1000 Ω)',b:['Cokelat','Hitam','Merah','Emas']},{v:'4,7 kΩ (4700 Ω)',b:['Kuning','Ungu','Merah','Emas']}];
+const mul={Cokelat:'×10 (tambah 1 nol)',Merah:'×100 (tambah 2 nol)'};
+const Q=[
+{q:'Komponen apakah yang memakai simbol zigzag ini?',s:C[0].s,o:['Resistor','Kapasitor','Induktor','Dioda'],a:0,e:'Simbol zigzag adalah resistor. Kapasitor = dua garis sejajar, induktor = lilitan, dioda = segitiga dengan garis.'},
+{q:'Fungsi utama kapasitor dalam rangkaian adalah…',o:['Menghambat arus','Menyimpan muatan listrik sementara','Mengalirkan arus satu arah','Menguatkan sinyal'],a:1,e:'Kapasitor menyimpan muatan di antara dua pelatnya sehingga bisa menyaring dan menghaluskan tegangan. Menghambat arus = resistor; satu arah = dioda; penguat = transistor.'},
+{q:'Komponen yang hanya mengalirkan arus ke satu arah adalah…',o:['Resistor','Induktor','Dioda','Kapasitor'],a:2,e:'Dioda meneruskan arus dari anoda ke katoda dan menahan arah sebaliknya, sehingga dipakai pada penyearah.'},
+{q:'Gelang warna Oranye – Oranye – Cokelat – Emas menunjukkan nilai…',o:['33 Ω','330 Ω ±5%','3,3 kΩ ±5%','300 Ω ±5%'],a:1,e:'Oranye = 3, Oranye = 3 → "33". Cokelat = ×10 → 330 Ω. Emas = toleransi ±5%.'},
+{q:'Transistor dapat difungsikan sebagai…',o:['Saklar elektronik dan penguat','Penyimpan energi magnet','Penghambat arus tetap','Penyearah saja'],a:0,e:'Arus kecil pada kaki basis mengendalikan arus besar antara kolektor dan emitor, sehingga bisa menjadi saklar atau penguat.'}];
+
+function go(id){document.querySelectorAll('.scr').forEach(e=>e.hidden=e.id!==id);$('#top').hidden=id=='splash';
+ $('#crumb').textContent={menu:'Menu Utama',explore:'Kenali Komponen',color:'Kode Warna',quiz:'Uji Pemahaman',result:'Hasil'}[id]||'';
+ if(id=='menu')prog();scrollTo(0,0)}
+function prog(){const a=st.vis.size==5,b=st.cdone>=T.length,c=st.qscore!==null;
+ $('#p1').textContent=a?'✅ Selesai':`${st.vis.size}/5 komponen`;$('#p2').textContent=b?'✅ Selesai':`${st.cdone}/${T.length} soal benar`;$('#p3').textContent=c?`✅ Skor ${st.qscore}/5`:'Belum dikerjakan';
+ const n=[a,b,c].filter(Boolean).length;$('#pbar').style.width=n/3*100+'%';$('#ptxt').textContent=`${n} dari 3 bagian selesai`}
+
+/* Eksplorasi */
+const pos=[[100,112],[220,95],[330,100],[450,126],[560,120]];
+function board(){const comp=`<rect x="70" y="140" width="60" height="20" rx="10" fill="#d9b88f"/><rect x="85" y="140" width="6" height="20" fill="#dc2626"/><rect x="97" y="140" width="6" height="20" fill="#dc2626"/><rect x="109" y="140" width="6" height="20" fill="#7a4a21"/>
+<rect x="205" y="115" width="30" height="60" rx="5" fill="#2563eb"/><rect x="209" y="118" width="6" height="54" fill="#fff8"/>
+<circle cx="330" cy="150" r="24" fill="none" stroke="#c2410c" stroke-width="9"/>
+<rect x="420" y="142" width="60" height="16" rx="3" fill="#222"/><rect x="464" y="142" width="6" height="16" fill="#ccc"/>
+<path d="M540 172V148A20 20 0 0 1 580 148V172Z" fill="#222"/>`;
+ const hs=pos.map((p,i)=>`<g class="hs${st.vis.has(i)?' done':''}" tabindex="0" role="button" aria-label="Komponen ${i+1}" onclick="openPop(${i})" onkeydown="if(event.key=='Enter')openPop(${i})"><circle cx="${p[0]}" cy="${p[1]}" r="15"/><text x="${p[0]}" y="${p[1]+5}" text-anchor="middle" font-weight="700" fill="#222">${i+1}</text></g>`).join('');
+ $('#board').innerHTML=`<svg viewBox="0 0 640 220"><defs><pattern id="h" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="7" cy="7" r="2" fill="#0004"/></pattern></defs><rect x="10" y="40" width="620" height="170" rx="12" fill="#e8e2d0"/><rect x="10" y="40" width="620" height="170" rx="12" fill="url(#h)"/><rect x="10" y="48" width="620" height="3" fill="#dc2626"/><rect x="10" y="199" width="620" height="3" fill="#2563eb"/>${comp}${hs}</svg>`;
+ $('#ecount').textContent=`(${st.vis.size}/5 sudah dilihat)`}
+function openPop(i){const c=C[i];st.vis.add(i);const R=(l,v)=>`<dt>${l}</dt><dd>${v}</dd>`;$('#pop').innerHTML=`<button class="x" onclick="closePop()" aria-label="Tutup">✕</button><h2>${c.n}</h2><div style="text-align:center">${c.s}</div><p>${c.d}</p><dl>${R('Fungsi',c.f)}${R('Cara kerja',c.k)}${R('Satuan',c.u)}${R('Jenis',c.j)}${R('Bentuk fisik',c.p)}${R('Contoh pemakaian',c.c)}${R('Rumus/ciri penting','<b>'+c.r+'</b>')}${R('Tips',c.t)}</dl><div class="row"><button class="btn" onclick="say(${i})">🔊 Dengarkan</button><button class="btn ghost" onclick="closePop()">Tutup</button></div>`;$('#modal').hidden=false;board()}
+function closePop(){$('#modal').hidden=true;try{speechSynthesis.cancel()}catch(e){}}
+function say(i){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(C[i].n+'. '+C[i].d+' '+C[i].f+' '+C[i].k);u.lang='id-ID';speechSynthesis.speak(u)}catch(e){}}
+
+/* Kode warna */
+let ti=0,pl=[],sel=null;
+function startColor(){ti=Math.min(st.cdone,T.length-1);if(st.cdone>=T.length)ti=0;loadTask();go('color')}
+function loadTask(){pl=[null,null,null,null];sel=null;$('#cfb').innerHTML='';$('#ctask').textContent=`Susun gelang warna untuk nilai ${T[ti].v} (±5%).`;$('#cno').textContent=`Soal ${ti+1}/${T.length}`;
+ $('#chips').innerHTML=COL.map(c=>`<button class="chip" draggable="true" data-n="${c[0]}" ondragstart="event.dataTransfer.setData('t','${c[0]}')" onclick="pick('${c[0]}')"><i style="background:${c[1]}"></i>${c[0]}</button>`).join('');drawRes()}
+function drawRes(){const x=[110,160,210,290];$('#res').innerHTML=`<line x1="10" y1="55" x2="390" y2="55" stroke="#9ca3af" stroke-width="5"/><rect x="80" y="20" width="240" height="70" rx="30" fill="#e8cfa6"/>`+x.map((p,i)=>{const c=pl[i]?cc(pl[i])[1]:'none';return `<rect x="${p}" y="${i==3?20:16}" width="26" height="${i==3?70:78}" rx="4" fill="${c}" stroke="${pl[i]?'#0006':'#f59e0b'}" stroke-width="2" stroke-dasharray="${pl[i]?0:'5 4'}" pointer-events="all" style="cursor:pointer" ondragover="event.preventDefault()" ondrop="event.preventDefault();put(${i},event.dataTransfer.getData('t'))" onclick="slot(${i})"/><text x="${p+13}" y="108" text-anchor="middle" font-size="11" fill="currentColor">${i+1}</text>`}).join('')}
+function pick(n){sel=n;document.querySelectorAll('.chip').forEach(e=>e.classList.toggle('sel',e.dataset.n==n))}
+function slot(i){if(sel){put(i,sel)}else{pl[i]=null;drawRes()}}
+function put(i,n){if(!n)return;if((n=='Emas')!=(i==3)){$('#cfb').innerHTML='<div class="fb no">Emas hanya untuk gelang ke-4 (toleransi); gelang 1–3 memakai warna angka/pengali.</div>';return}$('#cfb').innerHTML='';pl[i]=n;sel=null;document.querySelectorAll('.chip').forEach(e=>e.classList.remove('sel'));drawRes()}
+function clearColor(){pl=[null,null,null,null];$('#cfb').innerHTML='';drawRes()}
+function checkColor(){const t=T[ti],b=t.b;if(pl.includes(null)){$('#cfb').innerHTML='<div class="fb">Lengkapi keempat gelang dulu, ya.</div>';return}
+ const ok=b.every((x,i)=>x==pl[i]);const d=`${cc(b[0])[2]}${cc(b[1])[2]}`;
+ const ex=`<p><b>Pembahasan:</b> ${b[0]} = ${cc(b[0])[2]}, ${b[1]} = ${cc(b[1])[2]} → "${d}". ${b[2]} = ${mul[b[2]]} → ${t.v}. Emas = toleransi ±5%.</p>`;
+ if(ok){if(ti+1>st.cdone)st.cdone=ti+1;const last=ti==T.length-1;
+  $('#cfb').innerHTML=`<div class="fb ok"><b>✅ Tepat Sekali!</b> Kamu berhasil membaca nilai resistor dengan benar.${ex}<div class="row"><button class="btn" onclick="${last?"go('menu')":'ti++;loadTask()'}">${last?'Selesai → Menu':'Soal berikutnya →'}</button><button class="btn ghost" onclick="loadTask()">Ulangi Latihan</button></div></div>`}
+ else{const w=b.map((x,i)=>x!=pl[i]?i+1:0).filter(Boolean).join(', ');
+  $('#cfb').innerHTML=`<div class="fb no"><b>❌ Belum Tepat.</b> Gelang yang masih keliru: nomor ${w}. Periksa kembali urutan warna, lalu ulangi.${ex}<div class="row"><button class="btn" onclick="clearColor()">Coba Lagi</button><button class="btn ghost" onclick="go('menu')">Menu Utama</button></div></div>`}}
+
+/* Kuis */
+let qi=0,qs=0;
+function startQuiz(){qi=0;qs=0;showQ();go('quiz')}
+function showQ(){const q=Q[qi];$('#qno').textContent=`Soal ${qi+1} dari ${Q.length}`;$('#qbar').style.width=qi/Q.length*100+'%';$('#qfb').innerHTML='';
+ $('#qbody').innerHTML=`<h3>${q.q}</h3>${q.s?`<div style="text-align:center">${q.s}</div>`:''}`+q.o.map((o,i)=>`<button class="opt" onclick="ans(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}
+function ans(i){const q=Q[qi],ok=i==q.a;if(ok)qs++;const bs=document.querySelectorAll('.opt');bs.forEach((b,j)=>{b.disabled=true;if(j==q.a)b.classList.add('ok');else if(j==i)b.classList.add('no')});
+ const last=qi==Q.length-1;$('#qfb').innerHTML=`<div class="fb ${ok?'ok':'no'}"><b>${ok?'✅ Benar!':'❌ Kurang tepat.'}</b> Jawaban: ${String.fromCharCode(65+q.a)}.<p>${q.e}</p><button class="btn" onclick="${last?'finish()':'qi++;showQ()'}">${last?'Lihat Hasil →':'Lanjut →'}</button></div>`}
+function finish(){st.qscore=qs;const p=qs/Q.length*100;$('#rscore').textContent=`${p}`;$('#rmsg').textContent=`Kamu menjawab benar ${qs} dari ${Q.length} soal.`;
+ $('#rcolor').textContent=`Latihan kode warna: ${st.cdone} dari ${T.length} soal berhasil.`;
+ $('#rrec').textContent=p>=80?'Hebat! Pemahamanmu sudah baik. Lanjutkan dengan merangkai LED + resistor di breadboard atau simulator (mis. Tinkercad).':p>=60?'Cukup baik. Ulangi bagian "Kenali Komponen" untuk komponen yang masih ragu, lalu coba kuis lagi.':'Yuk pelajari lagi: buka "Kenali Komponen", klik semua hotspot, kerjakan latihan kode warna, lalu ulangi kuis.';go('result')}
+board();
+</script></body></html>
